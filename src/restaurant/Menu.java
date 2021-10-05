@@ -1,54 +1,51 @@
-package restaurant;
-
-import java.util.Date;
+package studios.restaurantmenu;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Menu {
-    private Date createdOn;
-    private Boolean newItem;
-    private String[] categories = {"appetizer", "main", "desert"};
-    private HashMap<String, ArrayList<MenuItem>> items;
-    private Double price;
+    private String lastUpdated;
+    private ArrayList<MenuItems> items;
 
-
-    public Date getCreatedOn() {
-        return createdOn;
+    public Menu(ArrayList<MenuItems> items, String lastUpdated) {
+        this.items = items;
+        this.lastUpdated = lastUpdated;
     }
 
-    public Boolean getNewItem() {
-        return newItem;
+    public void addItem(MenuItems food) {
+        items.add(food);
     }
 
-    public String[] getCategories() {
-        return categories;
+    public void removeItem(MenuItems food) {
+        int itemToRemove = items.indexOf(food);
+        items.remove(itemToRemove);
     }
 
-    public HashMap<String, ArrayList<MenuItem>> getItems() {
+    public void printAll() {
+        for (MenuItems item : items) {
+            System.out.println("Price: " + item.getPrice() + "\nDescription: " + item.getDescription() + "\nNew: " + item.isNew() + "\n");
+        }
+    }
+
+    public void printSingle(String singleItem) {
+        for (MenuItems item : items) {
+            if (item.getDescription().equals(singleItem)) {
+                System.out.println("Price: " + item.getPrice() + "\nDescription: " + item.getDescription() + "\nNew: " + item.isNew() + "\n");
+            }
+        }
+    }
+
+    public String getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(String lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    public ArrayList<MenuItems> getItems() {
         return items;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setCreatedOn(Date createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public void setNewItem(Boolean newItem) {
-        this.newItem = newItem;
-    }
-
-    public void setCategories(String[] categories) {
-        this.categories = categories;
-    }
-
-    public void setItems(HashMap<String, ArrayList<MenuItem>> items) {
+    public void setItems(ArrayList<MenuItems> items) {
         this.items = items;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 }
